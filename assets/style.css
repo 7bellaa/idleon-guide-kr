@@ -282,3 +282,26 @@ tbody td:first-child { white-space: nowrap; }
   font-size: .88rem;
 }
 .site-footer a { color: var(--primary); }
+
+/* ---- 원문 이미지 (gameslikefinder.com에서 복원) ------------------------ */
+.guide-img {
+  margin: 18px 0;
+  text-align: center;
+}
+.guide-img img {
+  max-width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  background: var(--bg-panel);
+}
+
+/* heading 정렬에 실패한 가이드의 하단 갤러리 */
+.guide-gallery {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+}
+.guide-gallery h2 { color: var(--ink-faint); }
+.guide-gallery .guide-img { display: inline-block; max-width: 100%; }

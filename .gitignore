@@ -1,0 +1,9 @@
+# 원문 HTML 캐시 (tools/sync_images.py가 받아두는 임시 파일 — 재배포 불필요)
+.cache/
+
+# Python
+__pycache__/
+*.pyc
+
+# macOS
+.DS_Store
