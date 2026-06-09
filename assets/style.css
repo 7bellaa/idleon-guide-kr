@@ -1,0 +1,284 @@
+/* =========================================================================
+   Idleon 빌드 가이드 (한글 번역) — 공유 스타일시트
+   오프라인 사용을 고려해 외부 폰트/리소스 없이 시스템 폰트만 사용합니다.
+   ========================================================================= */
+
+:root {
+  --bg:          #f6f5f2;
+  --bg-panel:    #ffffff;
+  --bg-soft:     #f0eef9;
+  --ink:         #1f2230;
+  --ink-soft:    #4a4f63;
+  --ink-faint:   #767b90;
+  --line:        #e3e0ef;
+  --primary:     #5b3fd9;   /* indigo/violet — Idleon 판타지 톤 */
+  --primary-ink: #4226c4;
+  --accent:      #e9a83a;   /* warm gold accent */
+  --accent-deep: #b9791a;
+  --en:          #2b3a8f;   /* 영어 고유명사 강조색 */
+  --code-bg:     #f3f1fb;
+  --shadow:      0 1px 2px rgba(31,34,48,.06), 0 8px 24px rgba(31,34,48,.06);
+  --radius:      14px;
+  --maxw:        1180px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg:          #14151c;
+    --bg-panel:    #1c1e29;
+    --bg-soft:     #232539;
+    --ink:         #e9e8f2;
+    --ink-soft:    #b9bace;
+    --ink-faint:   #8a8ca6;
+    --line:        #2e3145;
+    --primary:     #9c86ff;
+    --primary-ink: #b3a2ff;
+    --accent:      #f0b552;
+    --accent-deep: #f0b552;
+    --en:          #b9c2ff;
+    --code-bg:     #262842;
+    --shadow:      0 1px 2px rgba(0,0,0,.4), 0 10px 30px rgba(0,0,0,.35);
+  }
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Noto Sans KR',
+               system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  font-size: 17px;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* ---- Header ------------------------------------------------------------ */
+.site-header {
+  background:
+    radial-gradient(1200px 400px at 15% -40%, rgba(233,168,58,.25), transparent 60%),
+    linear-gradient(135deg, var(--primary) 0%, var(--primary-ink) 60%, #2a1b73 100%);
+  color: #fff;
+  padding: 56px 24px 48px;
+  position: relative;
+  overflow: hidden;
+}
+.site-header::after {
+  /* 픽셀풍 점 패턴 — 가벼운 게임 가이드 분위기 */
+  content: "";
+  position: absolute; inset: 0;
+  background-image: radial-gradient(rgba(255,255,255,.10) 1.5px, transparent 1.6px);
+  background-size: 22px 22px;
+  opacity: .5;
+  pointer-events: none;
+}
+.site-header__inner { max-width: var(--maxw); margin: 0 auto; position: relative; }
+.site-header h1 {
+  margin: 0 0 10px;
+  font-size: clamp(1.7rem, 4vw, 2.6rem);
+  line-height: 1.25;
+  letter-spacing: -.01em;
+}
+.site-header .subtitle { margin: 0; font-size: 1.05rem; color: rgba(255,255,255,.85); }
+.site-header .source {
+  margin-top: 14px; font-size: .9rem; color: rgba(255,255,255,.8);
+}
+.site-header .source a { color: #fff; text-decoration: underline; text-underline-offset: 3px; }
+
+/* ---- Layout ------------------------------------------------------------ */
+.layout {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 32px 24px 80px;
+  display: grid;
+  grid-template-columns: 240px minmax(0, 1fr);
+  gap: 40px;
+  align-items: start;
+}
+@media (max-width: 880px) {
+  .layout { grid-template-columns: 1fr; gap: 0; }
+  .toc { display: none; }
+}
+
+/* ---- Sticky TOC -------------------------------------------------------- */
+.toc {
+  position: sticky;
+  top: 24px;
+  font-size: .92rem;
+  border-left: 2px solid var(--line);
+  padding-left: 16px;
+}
+.toc h2 {
+  font-size: .8rem; text-transform: uppercase; letter-spacing: .08em;
+  color: var(--ink-faint); margin: 0 0 12px;
+}
+.toc a {
+  display: block; color: var(--ink-soft); text-decoration: none;
+  padding: 5px 0; border-radius: 6px; transition: color .15s;
+}
+.toc a:hover { color: var(--primary); }
+.toc .toc-sub { margin-left: 12px; font-size: .86rem; }
+
+/* ---- Content ----------------------------------------------------------- */
+.content { min-width: 0; }
+.content section { scroll-margin-top: 20px; margin-bottom: 44px; }
+
+.content h2 {
+  font-size: 1.55rem;
+  margin: 0 0 8px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--line);
+  letter-spacing: -.01em;
+}
+.content h2 .en { color: var(--ink-faint); font-weight: 500; font-size: .72em; }
+.content h3 {
+  font-size: 1.2rem;
+  margin: 28px 0 6px;
+  color: var(--primary);
+  display: flex; align-items: center; gap: 10px;
+}
+.content h3::before {
+  content: ""; width: 8px; height: 18px; border-radius: 3px;
+  background: linear-gradient(var(--accent), var(--accent-deep));
+  flex: none;
+}
+.content p { margin: 10px 0; color: var(--ink); }
+.content ul { margin: 10px 0; padding-left: 0; list-style: none; }
+.content ul li {
+  position: relative; padding: 4px 0 4px 26px; color: var(--ink);
+}
+.content ul li::before {
+  content: "▸"; position: absolute; left: 4px; top: 4px;
+  color: var(--accent-deep); font-weight: 700;
+}
+
+/* 영어 고유명사 강조 — 인게임 검색용 */
+.en {
+  font-family: 'SF Mono', ui-monospace, 'JetBrains Mono', Menlo, Consolas, monospace;
+  font-size: .92em;
+  color: var(--en);
+  font-weight: 600;
+  letter-spacing: -.005em;
+}
+.gloss { color: var(--ink-faint); font-size: .92em; }
+
+/* ---- Callout / notice -------------------------------------------------- */
+.notice {
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--primary);
+  border-radius: 10px;
+  padding: 16px 18px;
+  margin: 0 0 36px;
+  font-size: .96rem;
+  color: var(--ink-soft);
+}
+.notice strong { color: var(--ink); }
+
+.lead {
+  font-size: 1.08rem;
+  color: var(--ink-soft);
+  background: var(--bg-panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  box-shadow: var(--shadow);
+}
+
+/* ---- Tables ------------------------------------------------------------ */
+.table-wrap { overflow-x: auto; margin: 16px 0; border-radius: var(--radius); }
+table {
+  width: 100%; border-collapse: collapse; background: var(--bg-panel);
+  min-width: 520px; box-shadow: var(--shadow); border-radius: var(--radius);
+  overflow: hidden;
+}
+thead th {
+  background: linear-gradient(var(--primary), var(--primary-ink));
+  color: #fff; text-align: left; padding: 12px 16px; font-size: .95rem;
+  font-weight: 700; white-space: nowrap;
+}
+tbody td { padding: 12px 16px; border-top: 1px solid var(--line); vertical-align: top; }
+tbody tr:nth-child(odd) td { background: rgba(91,63,217,.035); }
+tbody td:first-child { white-space: nowrap; }
+@media (prefers-color-scheme: dark) {
+  tbody tr:nth-child(odd) td { background: rgba(156,134,255,.06); }
+}
+
+/* ---- Guide directory --------------------------------------------------- */
+.cat { margin-bottom: 30px; }
+.cat h3 { margin-top: 14px; }
+.subcat-title {
+  font-size: .82rem; text-transform: uppercase; letter-spacing: .06em;
+  color: var(--ink-faint); margin: 18px 0 8px; font-weight: 700;
+}
+.link-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 10px;
+}
+.guide-link {
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  background: var(--bg-panel);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 11px 14px;
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: 600;
+  font-size: .95rem;
+  box-shadow: var(--shadow);
+  transition: transform .12s ease, border-color .12s ease, box-shadow .12s ease;
+}
+.guide-link:hover {
+  transform: translateY(-2px);
+  border-color: var(--primary);
+  box-shadow: 0 6px 18px rgba(91,63,217,.18);
+}
+.guide-link .name { font-family: 'SF Mono', ui-monospace, Menlo, Consolas, monospace; font-size: .9rem; }
+.badge {
+  flex: none;
+  font-size: .68rem; font-weight: 700; letter-spacing: .03em;
+  color: var(--accent-deep);
+  background: rgba(233,168,58,.16);
+  border: 1px solid rgba(233,168,58,.4);
+  border-radius: 999px;
+  padding: 2px 8px;
+}
+
+/* ---- Guide (개별 가이드) pages ----------------------------------------- */
+/* TOC 사이드바 없이 본문 전체폭으로 */
+.layout.single { grid-template-columns: minmax(0, 1fr); }
+.layout.single .content { max-width: 860px; margin: 0 auto; width: 100%; }
+
+.back-link {
+  display: inline-flex; align-items: center; gap: 6px;
+  color: rgba(255,255,255,.92); text-decoration: none;
+  font-size: .92rem; font-weight: 600; margin-bottom: 14px;
+  background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.25);
+  padding: 5px 12px; border-radius: 999px; transition: background .15s;
+}
+.back-link:hover { background: rgba(255,255,255,.22); }
+
+/* KO 배지 (로컬 번역본 링크) */
+.badge.ko {
+  color: #1b7a4b;
+  background: rgba(46,160,103,.16);
+  border-color: rgba(46,160,103,.4);
+}
+@media (prefers-color-scheme: dark) {
+  .badge.ko { color: #6fdca0; background: rgba(46,160,103,.18); border-color: rgba(46,160,103,.45); }
+}
+
+/* ---- Footer ------------------------------------------------------------ */
+.site-footer {
+  border-top: 1px solid var(--line);
+  padding: 28px 24px 60px;
+  text-align: center;
+  color: var(--ink-faint);
+  font-size: .88rem;
+}
+.site-footer a { color: var(--primary); }

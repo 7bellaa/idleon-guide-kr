@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wizard 빌드 가이드 — Idleon 가이드 (한글)</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="site-header__inner">
+    <a class="back-link" href="../index.html">← 전체 목록</a>
+    <h1>Wizard 빌드 가이드</h1>
+    <p class="source">원문: <a href="https://gameslikefinder.com/article/idleon-wizard-build-guide/" target="_blank" rel="noopener">gameslikefinder.com</a></p>
+  </div>
+</header>
+<div class="layout single">
+  <main class="content">
+    <div class="notice"><strong>번역 안내.</strong> 클래스·스킬·탤런트 이름 등 고유명사는 인게임 검색을 위해 영어 그대로 두었고, 설명만 한글로 옮겼습니다.</div>
+
+    <section>
+      <p>이 Idleon <span class="en">Wizard</span> 가이드는 전투와 예배(<span class="en">Worship</span>) 양쪽에 대한 탤런트 템플릿을 제공합니다. 스탬프를 수집하는 전문가로서 <span class="en">Beholder</span> 조각상 부스트 덕분에 높은 치명타 확률에 도달하며, 범위 내 원소 피해를 극대화하고 <span class="en">World 3 Worship</span> 스킬을 최적화하세요. 이 페이지는 <span class="en">Mage</span> 탤런트 빌드 페이지와 함께 활용해야 최대 효과를 발휘합니다.</p>
+    </section>
+
+    <section>
+      <h2>전투(Damage) 빌드</h2>
+      <p>피해 최대화를 위한 <span class="en">Wizard</span> 탤런트 우선순위:</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>탤런트</th><th>효과</th><th>설명</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="en">Floor Is Lava</span></td>
+              <td>화산을 소환해 피해</td>
+              <td>원거리 공격이 가능한 최고의 공격 스킬로 보스전 등 <span class="en">Active</span>(직접 플레이) 전투에 유용합니다. 최소 1포인트를 투자하고 공격 바에 배치한 후, <span class="en">Speedy Book</span>을 확보하고 나서 맥스하세요.</td>
+            </tr>
+            <tr>
+              <td><span class="en">Tornado</span></td>
+              <td>토네이도를 소환해 일정 시간 동안 앞뒤로 이동하며 피해</td>
+              <td>두 번째로 좋은 <span class="en">Active</span> 공격 스킬입니다. 1포인트 후 나중에 맥스하세요.</td>
+            </tr>
+            <tr>
+              <td><span class="en">Ice Shards</span></td>
+              <td>다음 기본 공격이 3회 피해를 주고 근처 몬스터를 빙결</td>
+              <td><span class="en">Wizard</span>의 <span class="en">Active</span> 공격 탤런트 중 가장 약하며 광역 효과가 없습니다. 1포인트 후 나중에 맥스하세요.</td>
+            </tr>
+            <tr>
+              <td><span class="en">Paperwork, Great…</span></td>
+              <td>보유한 스탬프 10개마다 +% 피해</td>
+              <td>퀘스트와 몬스터 드롭에서 스탬프를 성실히 수집한다면 최고의 <span class="en">Wizard</span> 피해 원천입니다.</td>
+            </tr>
+            <tr>
+              <td><span class="en">Mana Is Life</span></td>
+              <td>받은 피해의 일부를 MP로 전환하고, 피해 티어당 +% 멀티킬</td>
+              <td>패시브 멀티킬이 <span class="en">AFK</span> 수익을 높이고 <span class="en">World 3 Death Note</span> 메커니즘의 추가 킬 카운트를 쌓아 줍니다.</td>
+            </tr>
+            <tr>
+              <td><span class="en">Fuscia Flasks</span></td>
+              <td><span class="en">Mage Is Best</span> 버블 레벨마다 <span class="en">Overclocked Energy</span> 최대 레벨 증가</td>
+              <td><span class="en">Overclocked Energy</span>는 <span class="en">Wizard</span> 피해에 큰 부스트를 주지만 사전에 <span class="en">Mage Is Best</span> 연금술 버블을 어느 정도 레벨업해야 하며, 여분의 <span class="en">Mage</span> 탤런트 포인트도 필요합니다.</td>
+            </tr>
+            <tr>
+              <td><span class="en">WIS Wumbo</span></td>
+              <td><span class="en">Book of the Wise</span> 최대 탤런트 레벨 +</td>
+              <td>여분의 <span class="en">Mage</span> 탤런트 포인트가 있을 때 효과를 볼 수 있는 피해 원천으로, % 스탯 부스트가 쌓일수록 점점 강해집니다.</td>
+            </tr>
+            <tr>
+              <td><span class="en">Earlier Education</span></td>
+              <td><span class="en">Mage</span> 탤런트 탭 포인트 +</td>
+              <td><span class="en">Fuscia Flasks</span> 또는 <span class="en">WIS Wumbo</span>의 효과를 극대화하기 위해 <span class="en">Mage</span> 탤런트 포인트가 부족할 경우 투자하는 것이 합리적입니다.</td>
+            </tr>
+            <tr>
+              <td><span class="en">Speedy Book</span></td>
+              <td>4초 안에 4킬 달성 시 공격 속도 증가</td>
+              <td><span class="en">Wizard</span>의 다음 클래스 승급인 <span class="en">Elemental Sorcerer</span> 이후 <span class="en">Active</span> 플레이 스타일에서 중요한 탤런트입니다. 맥스 후 다시 공격 탤런트(<span class="en">Floor is Lava</span>, <span class="en">Tornado</span>, <span class="en">Ice Shards</span>)를 맥스하세요.</td>
+            </tr>
+            <tr>
+              <td><span class="en">Occult Obols</span></td>
+              <td><span class="en">Obols</span>가 +% 더 많은 <span class="en">WIS</span> 제공</td>
+              <td>장착한 <span class="en">Obols</span>에서 소폭의 지혜(<span class="en">WIS</span>)를 추가합니다.</td>
+            </tr>
+            <tr>
+              <td><span class="en">Staring Statues</span></td>
+              <td><span class="en">EXP</span>, <span class="en">Lumberbob</span>, <span class="en">Beholder</span> 조각상이 +% 더 큰 보너스를 제공</td>
+              <td><span class="en">Beholder</span> 조각상(치명타 확률 제공)을 강화해 현재 치명타 확률과 누적 조각상 수에 따라 피해에 소폭 영향을 줍니다.</td>
+            </tr>
+            <tr>
+              <td><span class="en">Nearby Outlet</span></td>
+              <td><span class="en">Worship</span> 충전 속도 +</td>
+              <td><span class="en">Worship</span> 충전 속도는 소울 획득 최적화의 시간 제한 요소이므로, 전투 프리셋에서도 여분의 탤런트 포인트가 있다면 투자하세요.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <h2>예배(Worship) 빌드</h2>
+      <p>최적화된 <span class="en">Worship</span> 빌드는 소울이 장비·연금술·스탬프 등 다양한 Idleon 메커니즘에 사용되기 때문에 계정 전반 진행에 중요합니다. 아래 우선순위를 <span class="en">Mage</span> 스킬링 빌드와 함께 활용하세요. <span class="en">Smart Efficiency</span>가 예배 수익에 큰 영향을 미칩니다.</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>탤런트</th><th>효과</th><th>설명</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="en">Charge Syphon</span></td>
+              <td>다른 모든 플레이어의 예배 충전량을 빼앗아 일부를 이 캐릭터에게 부여하고 최대 충전량 증가</td>
+              <td>다른 캐릭터가 생성한 예배 충전량을 소울 생성이 높은 <span class="en">Wizard</span>에게 집중시키는 핵심 탤런트입니다. 단, 다른 캐릭터도 어느 정도 <span class="en">Worship</span> 레벨을 유지해야 새 해골 장비를 해금할 수 있으므로 주의해서 사용하세요. <span class="en">Maestro</span>의 예배 충전량을 먼저 소모한 뒤 이 탤런트를 사용하세요. 최대 소울 수익을 위해 <span class="en">Maestro</span>의 예배 레벨을 <span class="en">Wizard</span>보다 높게 유지해야 <span class="en">Right Hand of Action</span>의 효과가 극대화됩니다.</td>
+            </tr>
+            <tr>
+              <td><span class="en">Sooouls</span></td>
+              <td>보관함의 <span class="en">Forest Souls</span> 10의 거듭제곱당 +% 예배 효율</td>
+              <td>저장된 <span class="en">Forest Souls</span>가 많아질수록 강해지는 예배 효율 탤런트입니다. 노력 대비 효과가 좋은 초기 목표로 100만 개를 권장하며, 이후 1000만, 1억, 10억 단계는 그리 큰 노력 없이 추가할 수 있습니다.</td>
+            </tr>
+            <tr>
+              <td><span class="en">Nearby Outlet</span></td>
+              <td><span class="en">Worship</span> 충전 속도 +</td>
+              <td>추가 충전 속도를 통해 소울 수익을 높입니다.</td>
+            </tr>
+            <tr>
+              <td><span class="en">Bless Up</span></td>
+              <td>+% 예배 경험치 획득</td>
+              <td>예배를 처음 시작할 때 일부 포인트를 투자하여 더 높은 레벨의 예배 해골 장비를 빠르게 해금하는 것을 권장합니다. 현재 사용 가능한 최고의 예배 해골 장비를 모두 해금한 뒤에는 포인트를 빼서 <span class="en">Maestro</span>의 예배 레벨이 <span class="en">Wizard</span>보다 높게 유지되도록 하세요.</td>
+            </tr>
+            <tr>
+              <td><span class="en">Staring Statues</span></td>
+              <td><span class="en">EXP</span>, <span class="en">Lumberbob</span>, <span class="en">Beholder</span> 조각상이 +% 더 큰 보너스를 제공</td>
+              <td>예배 효율에는 직접적인 기여가 없지만, <span class="en">Lumberbob</span> 조각상 부스트가 <span class="en">Wizard</span>로 스킬링할 때 나무 베기 수익을 높입니다.</td>
+            </tr>
+            <tr>
+              <td><span class="en">WIS Wumbo</span></td>
+              <td><span class="en">Book of the Wise</span> 최대 탤런트 레벨 +</td>
+              <td>지혜(<span class="en">WIS</span>)는 예배와 나무 베기 양쪽에 소폭 기여합니다.</td>
+            </tr>
+            <tr>
+              <td><span class="en">Occult Obols</span></td>
+              <td><span class="en">Obols</span>가 +% 더 많은 <span class="en">WIS</span> 제공</td>
+              <td>위와 유사하게 여분의 탤런트 포인트가 있을 때 지혜를 소폭 올려 줍니다.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+</div>
+<footer class="site-footer">
+  <p>한글 번역본 · 원문: <a href="https://gameslikefinder.com/article/idleon-wizard-build-guide/" target="_blank" rel="noopener">gameslikefinder.com</a></p>
+</footer>
+</body>
+</html>

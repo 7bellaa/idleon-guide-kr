@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Idleon 빌드 가이드 — 전체 클래스 & 스킬 탤런트 가이드 (한글 번역)</title>
+  <meta name="description" content="Legends of Idleon 빌드 허브의 한글 번역본. 클래스/스킬 빌드와 모든 월드 가이드 링크 모음. 고유명사는 인게임 검색을 위해 영어 그대로 유지.">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="site-header__inner">
+      <h1>Idleon 빌드 가이드<br>전체 클래스 &amp; 스킬 탤런트 가이드</h1>
+      <p class="subtitle">Legends of Idleon — 빌드 만드는 법, 클래스 빌드, 스킬 가이드 총정리 (한글 번역)</p>
+      <p class="source">원문 출처:
+        <a href="https://gameslikefinder.com/article/idleon-builds/" target="_blank" rel="noopener">gameslikefinder.com — Idleon Builds</a>
+      </p>
+    </div>
+  </header>
+
+  <div class="layout">
+
+    <!-- ===== Sticky TOC ===== -->
+    <nav class="toc" aria-label="목차">
+      <h2>목차</h2>
+      <a href="#overview">빌드 개요</a>
+      <a href="#afk" class="toc-sub">Combat – AFK Fighting</a>
+      <a href="#active" class="toc-sub">Combat – Active Fighting</a>
+      <a href="#skilling" class="toc-sub">Skilling Builds</a>
+      <a href="#class-builds">클래스 빌드</a>
+      <a href="#skill-guides">스킬 가이드</a>
+      <a href="#other-guides">기타 가이드</a>
+    </nav>
+
+    <!-- ===== Content ===== -->
+    <main class="content">
+
+      <div class="notice">
+        <strong>번역 안내.</strong> 이 페이지는 위 원문 허브 페이지의 한글 번역본입니다.
+        클래스·스킬·탤런트 이름과 게임 메커니즘 고유명사(예:
+        <span class="en">Warrior</span>, <span class="en">Crystal Countdown</span>,
+        <span class="en">Gem Shop</span>)는 인게임에서 찾기 쉽도록 <strong>영어 원문 그대로</strong> 두었고,
+        설명 문장만 한글로 옮겼습니다. 아래 가이드 디렉터리의 각 링크(<span class="badge ko">KO</span>)는
+        한글 번역본으로 연결되며, 원문은 각 가이드 페이지 상단의 “원문” 링크에서 볼 수 있습니다.
+      </div>
+
+      <!-- ===== Builds Overview ===== -->
+      <section id="overview">
+        <h2>빌드 개요 <span class="en">(How To Create Your Own Builds)</span></h2>
+        <p class="lead">
+          Idleon의 빌드는 크게 3가지 범주로 나뉩니다. 이 점을 이해하면
+          <span class="en">talents</span>(탤런트), <span class="en">food</span>,
+          <span class="en">star signs</span>, <span class="en">card sets</span>,
+          <span class="en">large alchemy bubbles</span>, <span class="en">equipment</span>,
+          <span class="en">prayers</span>, <span class="en">divinity link</span> 등 다양한 게임 메커니즘을
+          목적에 맞게 조정할 수 있습니다.
+        </p>
+
+        <section id="afk">
+          <h3>Combat – AFK Fighting</h3>
+          <p>
+            AFK(방치) 상태로 몬스터를 사냥하며 게임 월드를 진행하거나, 몬스터 자원 또는 클래스
+            경험치를 얻기 위한 빌드입니다. 이것이 목적이라면 다음을 최적화하세요:
+          </p>
+          <ul>
+            <li>공격 <span class="en">talents</span>를 <span class="en">attack bar</span>에 배치</li>
+            <li><span class="en">Accuracy</span> <span class="gloss">(명중률, 최소 95%)</span></li>
+            <li><span class="en">AFK Fighting gains</span> <span class="gloss">(방치 전투 획득량)</span></li>
+            <li><span class="en">Damage</span> <span class="gloss">(데미지 — <span class="en">weapon power</span>, 주력 클래스 스탯, <span class="en">multikill</span> 증가)</span></li>
+            <li><span class="en">Monster respawn</span> <span class="gloss">(몬스터 리스폰)</span></li>
+            <li><span class="en">Movement speed</span> <span class="gloss">(이동 속도)</span></li>
+            <li><span class="en">Drop chance</span> <span class="gloss">(드롭 확률 — 희귀 몬스터 드롭이나 <span class="en">cards</span>를 노릴 경우)</span></li>
+          </ul>
+          <p>
+            이 메커니즘 중 일부는 처음부터 사용할 수 있는 것이 아니며 각각 고유의 상한(<span class="en">cap</span>)이
+            있습니다. 따라서 극한 효율(<span class="en">min-max</span>)을 추구하는 플레이어는
+            <span class="en">AFK Info</span> 창에서 최적의 조합을 직접 실험해 볼 수 있습니다.
+          </p>
+        </section>
+
+        <section id="active">
+          <h3>Combat – Active Fighting</h3>
+          <p>
+            AFK 전투와 동일한 <span class="en">talent preset</span>을 자주 사용하는 또 다른 전투 빌드입니다.
+            드롭이나 경험치를 위한 <span class="en">crystal monster</span> 파밍, <span class="en">giant
+            monster</span> 사냥, 또는 <span class="en">Active</span>(직접 플레이)가 필요한 특정 게임 메커니즘 사용 등,
+            캐릭터를 직접 조작하며 플레이하려 할 때 사용합니다.
+          </p>
+          <p>
+            커뮤니티에서 흔히 <span class="en">Active</span> 플레이라 부르는 이 방식은 <span class="en">Auto</span> 기능을 켠 채
+            Idleon을 장시간 실행해 두는 방식이며, 플레이어가 게임에 적극적으로 개입할 필요는 없습니다.
+            한 번에 한 캐릭터만 <span class="en">Active</span> 상태가 될 수 있으며, 땅에 떨어진 드롭을 줍기 위해서는 1시간 이내
+            (코인은 20분)에 회수하거나, 전용 펫 <span class="en">Mr Pig</span>를 거래로 얻거나,
+            <span class="en">Gem Shop</span>에서 $5에 <span class="en">auto-loot</span> 기능을 구매해야 합니다.
+          </p>
+          <p><span class="en">Active</span> 플레이는 목표에 따라 다음을 최적화합니다:</p>
+          <ul>
+            <li>공격 및 <span class="en">respawn talents</span>를 <span class="en">attack bar</span>에 배치</li>
+            <li><span class="en">Crystal spawn chance</span> <span class="gloss">(크리스탈 스폰 확률)</span></li>
+            <li><span class="en">Class experience gain</span> <span class="gloss">(클래스 경험치 획득)</span></li>
+            <li><span class="en">Drop rate</span> <span class="gloss">(드롭률)</span></li>
+          </ul>
+          <p>
+            현재 여러 클래스를 <span class="en">Active</span>로 플레이하는 대표적인 이유는 아래와 같으며, 이러한 상황의 대부분은
+            <span class="en">World 4</span> 이후부터 등장합니다:
+          </p>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Class</th><th>Active For (Active 플레이 이유)</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span class="en">Maestro / Voidwalker</span></td>
+                  <td><span class="en">crystal monster</span>를 처치할 때 스킬 레벨업에 필요한 스킬 경험치를
+                    줄여 주는 <span class="en">Crystal Countdown</span> talent.</td>
+                </tr>
+                <tr>
+                  <td><span class="en">Bubonic Conjuror</span></td>
+                  <td><span class="en">Raise Dead</span> talent와 다양한 광역(AoE) 능력으로
+                    <span class="en">alchemy liquid</span> 생성을 늘려 주는 <span class="en">Cranium
+                    Cooking</span>. Cranium Cooking 파밍으로 상당한 돈도 벌 수 있지만,
+                    <span class="en">Divine Knight</span>만큼은 아닙니다.</td>
+                </tr>
+                <tr>
+                  <td><span class="en">Divine Knight</span></td>
+                  <td><span class="en">Orb of Remembrance</span>가 경험치와 드롭률을 높이고, 여기에
+                    <span class="en">Divine Intervention</span> 부활이 더해져 <span class="en">Crystal Monster</span> 드롭 파밍에
+                    최고의 <span class="en">Active</span> 클래스이자 최고의 돈벌이 클래스가 됩니다. Divine Knight는 몬스터 카드 정보
+                    화면의 <span class="en">Rare Drop Bags</span> 안에 있는 드롭을 파밍해야 합니다.</td>
+                </tr>
+                <tr>
+                  <td><span class="en">Siege Breaker</span></td>
+                  <td><span class="en">Plunderous Mobs</span>를 스폰시켜 적 몬스터가 빠른 속도로 리스폰되도록
+                    만들며, 동시에 모든 캐릭터의 드롭률을 높여 주는 영구 계정 <span class="en">stack</span>을
+                    쌓습니다.</td>
+                </tr>
+                <tr>
+                  <td><span class="en">Elemental Sorcerer</span></td>
+                  <td>다른 차원에서 몬스터를 소환해 계정 전체에 데미지 보너스를 제공합니다.
+                    <span class="en">Rare Drop bags</span>에 속하지 않는 몬스터 카드나 드롭(예:
+                    <span class="en">World 2</span>의 <span class="en">Sandy Pots</span>에서 나오는
+                    <span class="en">Glass Shards</span>) 파밍에 가장 뛰어납니다.</td>
+                </tr>
+                <tr>
+                  <td><span class="en">Death Bringer</span></td>
+                  <td><span class="en">Wraith Form</span>이라는 리셋 메커니즘을 중심으로 하며, 몬스터에게서
+                    <span class="en">bones</span>를 파밍해 계정 전체 업그레이드에 사용합니다.</td>
+                </tr>
+                <tr>
+                  <td><span class="en">Wind Walker</span></td>
+                  <td><span class="en">Tempest Form</span>이라는 리셋 메커니즘을 중심으로 하며, 몬스터에게서
+                    <span class="en">Dust</span>와 <span class="en">Medallions</span>를 파밍해 계정 전체
+                    업그레이드에 사용합니다.</td>
+                </tr>
+                <tr>
+                  <td><span class="en">Arcane Cultist</span></td>
+                  <td><span class="en">Arcanist Form</span>이라는 리셋 메커니즘을 중심으로 하며, 몬스터에게서
+                    <span class="en">Tachyons</span>를 파밍해 계정 전체 업그레이드에 사용합니다.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section id="skilling">
+          <h3>Skilling Builds</h3>
+          <p>
+            <span class="en">Skilling</span> 빌드는 특정 월드 스킬에서 자원·진행·경험치를 위한 skilling
+            획득량(Idleon 효율)을 극대화하는 데 초점을 둡니다. Idleon의 각 월드에는 특정 클래스와 연결된
+            3개의 스킬이 있으며, 이 스킬들은 해당 월드 보스를 처치하는 데 도움이 되는 계정 버프를
+            제공합니다. skilling 시 다음을 최적화하세요:
+          </p>
+          <ul>
+            <li>skilling <span class="en">talents</span>를 <span class="en">attack bar</span>에 배치 (<span class="en">Big Pick</span>)</li>
+            <li><span class="en">Skill efficiency / power</span> <span class="gloss">(스킬 효율 / 파워)</span></li>
+            <li><span class="en">AFK Skilling gains</span> <span class="gloss">(방치 스킬링 획득량)</span></li>
+            <li><span class="en">Multi resource chance</span> <span class="gloss">(다중 자원 확률)</span></li>
+            <li><span class="en">Skill experience</span> <span class="gloss">(스킬 경험치)</span></li>
+            <li><span class="en">Drop chance</span> <span class="gloss">(드롭 확률 — 희귀 스킬링 자원 드롭이나 <span class="en">cards</span>를 노릴 경우)</span></li>
+          </ul>
+          <p>
+            <span class="en">World 3</span> 이후부터는 대부분의 skilling 자원이 <span class="en">3D
+            printer</span> 메커니즘을 사용해 재료를 지속적으로 공급받는 방식으로 얻어집니다.
+          </p>
+        </section>
+      </section>
+
+      <!-- ===== Class Builds ===== -->
+      <section id="class-builds" class="cat">
+        <h2>클래스 빌드 <span class="en">(Class Builds)</span></h2>
+        <p>각 클래스/직업 전직별 탤런트 빌드 가이드입니다. <span class="badge ko">KO</span>는 한글 번역본.</p>
+        <div class="link-grid">
+          <a class="guide-link" href="guides/idleon-journeyman-build-guide.html" data-en-url="https://gameslikefinder.com/article/idleon-journeyman-build-guide/"><span class="name">Journeyman</span><span class="badge ko">KO</span></a>
+          <a class="guide-link" href="guides/idleon-warrior-build-guide.html" data-en-url="https://gameslikefinder.com/article/idleon-warrior-build-guide/"><span class="name">Warrior</span><span class="badge ko">KO</span></a>
+          <a class="guide-link" href="guides/idleon-archer-build-guide.html" data-en-url="https://gameslikefinder.com/article/idleon-archer-build-guide/"><span class="name">Archer</span><span class="badge ko">KO</span></a>
+          <a class="guide-link" href="guides/idleon-mage-build-guide.html" data-en-url="https://gameslikefinder.com/article/idleon-mage-build-guide/"><span class="name">Mage</span><span class="badge ko">KO</span></a>
+          <a class="guide-link" href="guides/idleon-maestro-build-guide.html" data-en-url="https://gameslikefinder.com/article/idleon-maestro-build-guide/"><span class="name">Maestro</span><span class="badge ko">KO</span></a>
+          <a class="guide-link" href="guides/idleon-barbarian-build-guide.html" data-en-url="https://gameslikefinder.com/article/idleon-barbarian-build-guide/"><span class="name">Barbarian / Fishing</span><span class="badge ko">KO</span></a>
+          <a class="guide-link" href="guides/idleon-bowman-build-guide.html" data-en-url="https://gameslikefinder.com/article/idleon-bowman-build-guide/"><span class="name">Bowman / Catching</span><span class="badge ko">KO</span></a>
+          <a class="guide-link" href="guides/idleon-shaman-build-guide.html" data-en-url="https://gameslikefinder.com/article/idleon-shaman-build-guide/"><span class="name">Shaman / Alchemy</span><span class="badge ko">KO</span></a>
+          <a class="guide-link" href="guides/idleon-voidwalker-build-guide.html" data-en-url="https://gameslikefinder.com/article/idleon-voidwalker-build-guide/"><span class="name">Voidwalker</span><span class="badge ko">KO</span></a>
+          <a class="guide-link" href="guides/idleon-squire-build-guide.html" data-en-url="https://gameslikefinder.com/article/idleon-squire-build-guide/"><span class="name">Squire / Construction</span><span class="badge ko">KO</span></a>
+          <a class="guide-link" href="guides/idleon-hunter-build-guide.html" data-en-url="https://gameslikefinder.com/article/idleon-hunter-build-guide/"><span class="name">Hunter / Trapping</span><span class="badge ko">KO</span></a>
+          <a class="guide-link" href="guides/idleon-wizard-build-guide.html" data-en-url="https://gameslikefinder.com/article/idleon-wizard-build-guide/"><span class="name">Wizard / Worship</span><span class="badge ko">KO</span></a>
+          <a class="guide-link" href="guides/idleon-blood-berserker-build-guide.html" data-en-url="https://gameslikefinder.com/article/idleon-blood-berserker-build-guide/"><span class="name">Blood Berserker / Cooking</span><span class="badge ko">KO</span></a>
+          <a class="guide-link" href="guides/idleon-siege-breaker-build-guide.html" data-en-url="https://gameslikefinder.com/article/idleon-siege-breaker-build-guide/"><span class="name">Siege Breaker / Sailing</span><span class="badge ko">KO</span></a>
+          <a class="guide-link" href="guides/idleon-bubonic-conjuror-build-guide.html" data-en-url="https://gameslikefinder.com/article/idleon-bubonic-conjuror-build-guide/"><span class="name">Bubonic Conjuror / Lab</span><span class="badge ko">KO</span></a>
+          <a class="guide-link" href="guides/idleon-divine-knight-build-guide.html" data-en-url="https://gameslikefinder.com/article/idleon-divine-knight-build-guide/"><span class="name">Divine Knight / Gaming</span><span class="badge ko">KO</span></a>
+          <a class="guide-link" href="guides/idleon-beast-master-build-guide.html" data-en-url="https://gameslikefinder.com/article/idleon-beast-master-build-guide/"><span class="name">Beast Master / Breeding</span><span class="badge ko">KO</span></a>
+          <a class="guide-link" href="guides/idleon-elemental-sorcerer-build-guide.html" data-en-url="https://gameslikefinder.com/article/idleon-elemental-sorcerer-build-guide/"><span class="name">Elemental Sorcerer / Divinity</span><span class="badge ko">KO</span></a>
+          <a class="guide-link" href="guides/idleon-death-bringer-build-guide.html" data-en-url="https://gameslikefinder.com/article/idleon-death-bringer-build-guide/"><span class="name">Death Bringer / Farming</span><span class="badge ko">KO</span></a>
+          <a class="guide-link" href="guides/idleon-wind-walker-build-guide.html" data-en-url="https://gameslikefinder.com/article/idleon-wind-walker-build-guide/"><span class="name">Wind Walker / Sneaking</span><span class="badge ko">KO</span></a>
+          <a class="guide-link" href="guides/idleon-arcane-cultist-build-guide.html" data-en-url="https://gameslikefinder.com/article/idleon-arcane-cultist-build-guide/"><span class="name">Arcane Cultist / Summoning</span><span class="badge ko">KO</span></a>
+        </div>
+      </section>
+
+      <!-- ===== Skill Guides ===== -->
+      <section id="skill-guides" class="cat">
+        <h2>스킬 가이드 <span class="en">(Skill Guides)</span></h2>
+        <div class="link-grid">
+          <a class="guide-link" href="guides/legends-of-idleon-mining-build.html" data-en-url="https://gameslikefinder.com/article/legends-of-idleon-mining-build/"><span class="name">Mining</span><span class="badge ko">KO</span></a>
+          <a class="guide-link" href="guides/idleon-smithing-build-guide.html" data-en-url="https://gameslikefinder.com/article/idleon-smithing-build-guide/"><span class="name">Smithing</span><span class="badge ko">KO</span></a>
+          <a class="guide-link" href="guides/idleon-chopping-build-guide.html" data-en-url="https://gameslikefinder.com/article/idleon-chopping-build-guide/"><span class="name">Chopping</span><span class="badge ko">KO</span></a>
+          <a class="guide-link" href="guides/idleon-fishing-build-guide.html" data-en-url="https://gameslikefinder.com/article/idleon-fishing-build-guide/"><span class="name">Fishing</span><span class="badge ko">KO</span></a>
+          <a class="guide-link" href="guides/idleon-catching-build-guide.html" data-en-url="https://gameslikefinder.com/article/idleon-catching-build-guide/"><span class="name">Catching</span><span class="badge ko">KO</span></a>
+          <a class="guide-link" href="guides/idleon-alchemy-guide.html" data-en-url="https://gameslikefinder.com/article/idleon-alchemy-guide/"><span class="name">Alchemy</span><span class="badge ko">KO</span></a>
+        </div>
+      </section>
+
+      <!-- ===== Other Guides ===== -->
+      <section id="other-guides" class="cat">
+        <h2>기타 가이드 <span class="en">(Other Idleon Guides)</span></h2>
+
+        <p class="subcat-title">General Guides</p>
+        <div class="link-grid">
+          <a class="guide-link" href="guides/idleon-character-creation-order.html" data-en-url="https://gameslikefinder.com/article/idleon-character-creation-order/"><span class="name">Character Creation Order</span><span class="badge ko">KO</span></a>
+          <a class="guide-link" href="guides/idleon-accuracy-guide.html" data-en-url="https://gameslikefinder.com/article/idleon-accuracy-guide/"><span class="name">Accuracy</span><span class="badge ko">KO</span></a>
+          <a class="guide-link" href="guides/idleon-task-merit-shop-guide.html" data-en-url="https://gameslikefinder.com/article/idleon-task-merit-shop-guide/"><span class="name">Merit Shop</span><span class="badge ko">KO</span></a>
+          <a class="guide-link" href="guides/legends-of-idleon-gems.html" data-en-url="https://gameslikefinder.com/article/legends-of-idleon-gems/"><span class="name">Gem Shop</span><span class="badge ko">KO</span></a>
+          <a class="guide-link" href="guides/idleon-card-builds.html" data-en-url="https://gameslikefinder.com/article/idleon-card-builds/"><span class="name">Card Builds</span><span class="badge ko">KO</span></a>
+          <a class="guide-link" href="guides/idleon-best-quests.html" data-en-url="https://gameslikefinder.com/article/idleon-best-quests/"><span class="name">Quests</span><span class="badge ko">KO</span></a>
+          <a class="guide-link" href="guides/idleon-special-talents-guide.html" data-en-url="https://gameslikefinder.com/article/idleon-special-talents-guide/"><span class="name">Special Talents</span><span class="badge ko">KO</span></a>
+          <a class="guide-link" href="guides/idleon-crystal-monster-guide.html" data-en-url="https://gameslikefinder.com/article/idleon-crystal-monster-guide/"><span class="name">Crystal Farming</span><span class="badge ko">KO</span></a>
+          <a class="guide-link" href="guides/idleon-event-shop-guide.html" data-en-url="https://gameslikefinder.com/article/idleon-event-shop-guide/"><span class="name">Event Shop Tier List</span><span class="badge ko">KO</span></a>
+          <a class="guide-link" href="guides/idleon-equipment-guide.html" data-en-url="https://gameslikefinder.com/article/idleon-equipment-guide/"><span class="name">Equipment Progression</span><span class="badge ko">KO</span></a>
+        </div>
+
+        <p class="subcat-title">World 1</p>
+        <div class="link-grid">
+          <a class="guide-link" href="guides/idleon-best-star-sign.html" data-en-url="https://gameslikefinder.com/article/idleon-best-star-sign/"><span class="name">Star Signs</span><span class="badge ko">KO</span></a>
+          <a class="guide-link" href="guides/idleon-recipe-unlocks.html" data-en-url="https://gameslikefinder.com/article/idleon-recipe-unlocks/"><span class="name">Task Recipes</span><span class="badge ko">KO</span></a>
+          <a class="guide-link" href="guides/idleon-best-stamps.html" data-en-url="https://gameslikefinder.com/article/idleon-best-stamps/"><span class="name">Stamps</span><span class="badge ko">KO</span></a>
+          <a class="guide-link" href="guides/idleon-statues-guide.html" data-en-url="https://gameslikefinder.com/article/idleon-statues-guide/"><span class="name">Statues</span><span class="badge ko">KO</span></a>
+        </div>
+
+        <p class="subcat-title">World 2</p>
+        <div class="link-grid">
+          <a class="guide-link" href="guides/idleon-arcade-shop-priority.html" data-en-url="https://gameslikefinder.com/article/idleon-arcade-shop-priority/"><span class="name">Arcade Shop Priority</span><span class="badge ko">KO</span></a>
+          <a class="guide-link" href="guides/idleon-island-expeditions-guide.html" data-en-url="https://gameslikefinder.com/article/idleon-island-expeditions-guide/"><span class="name">Island Expeditions</span><span class="badge ko">KO</span></a>
+          <a class="guide-link" href="guides/idleon-post-office-guide.html" data-en-url="https://gameslikefinder.com/article/idleon-post-office-guide/"><span class="name">Post Office</span><span class="badge ko">KO</span></a>
+          <a class="guide-link" href="guides/idleon-killroy-guide.html" data-en-url="https://gameslikefinder.com/article/idleon-killroy-guide/"><span class="name">Killroy</span><span class="badge ko">KO</span></a>
+          <a class="guide-link" href="guides/idleon-obol-guide.html" data-en-url="https://gameslikefinder.com/article/idleon-obol-guide/"><span class="name">Obols</span><span class="badge ko">KO</span></a>
+          <a class="guide-link" href="guides/idleon-weekly-battle-guide.html" data-en-url="https://gameslikefinder.com/article/idleon-weekly-battle-guide/"><span class="name">Weekly Boss Battles</span><span class="badge ko">KO</span></a>
+          <a class="guide-link" href="guides/idleon-poppy-guide.html" data-en-url="https://gameslikefinder.com/article/idleon-poppy-guide/"><span class="name">Poppy The Kangaroo</span><span class="badge ko">KO</span></a>
+          <a class="guide-link" href="guides/idleon-party-dungeons-guide.html" data-en-url="https://gameslikefinder.com/article/idleon-party-dungeons-guide/"><span class="name">Party Dungeon</span><span class="badge ko">KO</span></a>
+        </div>
+
+        <p class="subcat-title">World 3</p>
+        <div class="link-grid">
+          <a class="guide-link" href="guides/idleon-max-talent-guide.html" data-en-url="https://gameslikefinder.com/article/idleon-max-talent-guide/"><span class="name">Max Talent Level</span><span class="badge ko">KO</span></a>
+          <a class="guide-link" href="guides/idleon-3d-printer-guide.html" data-en-url="https://gameslikefinder.com/article/idleon-3d-printer-guide/"><span class="name">3D Printer Sample</span><span class="badge ko">KO</span></a>
+          <a class="guide-link" href="guides/idleon-construction-guide.html" data-en-url="https://gameslikefinder.com/article/idleon-construction-guide/"><span class="name">Construction</span><span class="badge ko">KO</span></a>
+          <a class="guide-link" href="guides/idleon-prayers-guide.html" data-en-url="https://gameslikefinder.com/article/idleon-prayers-guide/"><span class="name">Prayers</span><span class="badge ko">KO</span></a>
+          <a class="guide-link" href="guides/idleon-tower-defence-setup-guide.html" data-en-url="https://gameslikefinder.com/article/idleon-tower-defence-setup-guide/"><span class="name">Tower Defence Setups</span><span class="badge ko">KO</span></a>
+          <a class="guide-link" href="guides/idleon-equinox-guide.html" data-en-url="https://gameslikefinder.com/article/idleon-equinox-guide/"><span class="name">Equinox Valley</span><span class="badge ko">KO</span></a>
+          <a class="guide-link" href="guides/idleon-bubba-guide.html" data-en-url="https://gameslikefinder.com/article/idleon-bubba-guide/"><span class="name">Bubba The Seal</span><span class="badge ko">KO</span></a>
+        </div>
+
+        <p class="subcat-title">World 4</p>
+        <div class="link-grid">
+          <a class="guide-link" href="guides/idleon-cooking-guide.html" data-en-url="https://gameslikefinder.com/article/idleon-cooking-guide/"><span class="name">Cooking</span><span class="badge ko">KO</span></a>
+        </div>
+
+        <p class="subcat-title">World 5</p>
+        <div class="link-grid">
+          <a class="guide-link" href="guides/idleon-divinity-guide.html" data-en-url="https://gameslikefinder.com/article/idleon-divinity-guide/"><span class="name">Divinity Gods</span><span class="badge ko">KO</span></a>
+        </div>
+
+        <p class="subcat-title">World 6</p>
+        <div class="link-grid">
+          <a class="guide-link" href="guides/idleon-sneaking-guide.html" data-en-url="https://gameslikefinder.com/article/idleon-sneaking-guide/"><span class="name">Sneaking</span><span class="badge ko">KO</span></a>
+          <a class="guide-link" href="guides/idleon-summoning-guide.html" data-en-url="https://gameslikefinder.com/article/idleon-summoning-guide/"><span class="name">Summoning</span><span class="badge ko">KO</span></a>
+          <a class="guide-link" href="guides/idleon-farming-guide.html" data-en-url="https://gameslikefinder.com/article/idleon-farming-guide/"><span class="name">Farming</span><span class="badge ko">KO</span></a>
+          <a class="guide-link" href="guides/idleon-golden-food-guide.html" data-en-url="https://gameslikefinder.com/article/idleon-golden-food-guide/"><span class="name">Golden Food Beanstalk Farming</span><span class="badge ko">KO</span></a>
+        </div>
+
+        <p class="subcat-title">World 7</p>
+        <div class="link-grid">
+          <a class="guide-link" href="guides/idleon-legend-talents-guide.html" data-en-url="https://gameslikefinder.com/article/idleon-legend-talents-guide/"><span class="name">Legend Talents</span><span class="badge ko">KO</span></a>
+          <a class="guide-link" href="guides/idleon-spelunking-guide.html" data-en-url="https://gameslikefinder.com/article/idleon-spelunking-guide/"><span class="name">Spelunking</span><span class="badge ko">KO</span></a>
+          <a class="guide-link" href="guides/idleon-research-guide.html" data-en-url="https://gameslikefinder.com/article/idleon-research-guide/"><span class="name">Research</span><span class="badge ko">KO</span></a>
+          <a class="guide-link" href="guides/idleon-super-talents-guide.html" data-en-url="https://gameslikefinder.com/article/idleon-super-talents-guide/"><span class="name">Super Talents</span><span class="badge ko">KO</span></a>
+          <a class="guide-link" href="guides/idleon-minehead-guide.html" data-en-url="https://gameslikefinder.com/article/idleon-minehead-guide/"><span class="name">Minehead</span><span class="badge ko">KO</span></a>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <p>한글 번역본 · 원문:
+      <a href="https://gameslikefinder.com/article/idleon-builds/" target="_blank" rel="noopener">gameslikefinder.com/article/idleon-builds</a>
+      · 고유명사(클래스·스킬·탤런트명)는 인게임 검색을 위해 영어 그대로 유지했습니다.
+    </p>
+  </footer>
+
+</body>
+</html>

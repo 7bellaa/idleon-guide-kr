@@ -1,0 +1,7 @@
+{
+  "tool_name": "Bash",
+  "tool_input_preview": "{\"command\":\"grep -n \\\"적극적\\\\|적극 전투\\\\|적극 플레이\\\\|능동적\\\\|자리비움\\\\|정확도\\\" /Users/7bellaa/obsidian/idleon/idleon-ko/guides/idleon-character-creation-order.html /Users/7bellaa/obsidian/idleon/idleon-ko/guides/idl...",
+  "error": "Exit code 1",
+  "timestamp": "2026-06-09T04:45:59.586Z",
+  "retry_count": 1
+}
