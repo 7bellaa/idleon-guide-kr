@@ -393,17 +393,19 @@ def insert_gallery(doc, slug, placed):
 # small game-asset icons -> injected into the matching translated table cells
 # --------------------------------------------------------------------------- #
 def cell_icon_urls(inner):
-    """Ordered, de-duplicated small-icon URLs inside one table cell.
+    """Ordered, de-duplicated icon URLs inside one table cell.
 
-    The source emits each lazy icon twice (placeholder + <noscript> copy), so
-    de-dupe by resolved URL while preserving first-seen order.
+    An "icon" is any small game asset: a px-prefixed name (e.g. 36px-...) OR an
+    image whose width & height are both < 100 (e.g. the 56x56 talent icons like
+    Fist_of_Rage.png). The source emits each lazy icon twice (placeholder +
+    <noscript> copy), so de-dupe by resolved URL while preserving order.
     """
     seen = set()
     urls = []
     for m in IMG_TAG_RE.finditer(inner):
         a = attrs_of(m.group(0))
         u = real_url(a)
-        if not u or not SMALL_NAME_RE.search(u.split("?")[0]):
+        if not u or CHROME_RE.search(u) or not is_small(a, u):
             continue
         if u in seen:
             continue
