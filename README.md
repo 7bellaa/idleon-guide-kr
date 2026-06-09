@@ -21,7 +21,8 @@ tools/sync_images.py    # 원문 이미지 추출·삽입 스크립트
 ## 이미지 동기화
 번역본은 본문 텍스트만 옮겨 이미지가 없었습니다. 각 가이드 헤더의 원문 URL을 따라가
 원문(gameslikefinder.com)의 본문 이미지를 내려받아 `assets/images/<slug>/`에 저장하고,
-번역본의 대응 섹션(heading 순서 정렬)에 다시 삽입합니다.
+번역본의 대응 섹션(heading 순서 정렬)에 다시 삽입합니다. 표 안 항목명 옆 작은 게임
+아이콘(버블·아이템 등)도 원문 표와 행·셀 위치를 맞춰 해당 셀에 주입합니다.
 
 ```
 python3 tools/sync_images.py                 # 전체 67개

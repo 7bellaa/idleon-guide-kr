@@ -65,8 +65,20 @@ ATTR_RE = re.compile(r'(\w[\w-]*)\s*=\s*"([^"]*)"')
 
 MARK_START = "<!-- glf-img:start -->"
 MARK_END = "<!-- glf-img:end -->"
+# matches a block plus the single leading newline it owns — byte-stable across
+# re-runs (does NOT swallow the following line's indentation)
 MARK_BLOCK_RE = re.compile(
-    re.escape(MARK_START) + r".*?" + re.escape(MARK_END) + r"\s*", re.S)
+    r"\n?" + re.escape(MARK_START) + r".*?" + re.escape(MARK_END), re.S)
+
+# small game-asset icons injected inside table cells
+ICO_START = "<!--glf-ico-->"
+ICO_END = "<!--/glf-ico-->"
+ICO_BLOCK_RE = re.compile(
+    re.escape(ICO_START) + r".*?" + re.escape(ICO_END), re.S)
+
+TABLE_RE = re.compile(r"<table\b.*?</table>", re.S | re.I)
+ROW_RE = re.compile(r"<tr\b.*?</tr>", re.S | re.I)
+CELL_RE = re.compile(r"<(t[dh])\b[^>]*>(.*?)</\1>", re.S | re.I)
 
 
 def log(msg):
@@ -277,26 +289,22 @@ def download(url, fallback, dest_dir, allow=True):
 # --------------------------------------------------------------------------- #
 # insert into translated file
 # --------------------------------------------------------------------------- #
-def figure_html(slug, fname, alt):
+def wrap_block(inner):
+    """Wrap inner HTML in markers with exactly one owned leading newline."""
+    return f"\n{MARK_START}\n{inner}\n{MARK_END}"
+
+
+def figure_inner(slug, fname, alt):
     alt_attr = html.escape(alt, quote=True)
-    return (f'{MARK_START}\n'
-            f'<figure class="guide-img">'
+    return (f'<figure class="guide-img">'
             f'<img src="../assets/images/{slug}/{fname}" '
-            f'alt="{alt_attr}" loading="lazy"></figure>\n{MARK_END}\n')
+            f'alt="{alt_attr}" loading="lazy"></figure>')
 
 
 def gallery_html(slug, items):
-    figs = "".join(
-        f'<figure class="guide-img">'
-        f'<img src="../assets/images/{slug}/{it["fname"]}" '
-        f'alt="{html.escape(it["alt"], quote=True)}" loading="lazy"></figure>\n'
-        for it in items)
-    return (f'{MARK_START}\n<section class="guide-gallery">'
-            f'<h2>이미지</h2>\n{figs}</section>\n{MARK_END}\n')
-
-
-def strip_markers(text):
-    return MARK_BLOCK_RE.sub("", text)
+    figs = "\n".join(figure_inner(slug, it["fname"], it["alt"]) for it in items)
+    return wrap_block(
+        f'<section class="guide-gallery"><h2>이미지</h2>\n{figs}\n</section>')
 
 
 # block-close anchors inside a translated section we can insert *after*
@@ -342,32 +350,32 @@ def insert_aligned(doc, slug, placed):
     for it in placed:
         by_section.setdefault(it["section"], []).append(it)
 
-    # collect (offset, order_within_section, html) so we can apply later
+    # collect (offset, order_within_section, figure) so we can apply later
     inserts = []
     for sec, items in by_section.items():
         if sec == 0:
             # intro images: just before the first heading (after intro text)
             base = headings[0].start() if headings else len(doc)
             for i, it in enumerate(items):
-                inserts.append((base, i, figure_html(slug, it["fname"], it["alt"])))
+                inserts.append((base, i, figure_inner(slug, it["fname"], it["alt"])))
             continue
         start = headings[sec - 1].end()
         end = headings[sec].start() if sec < len(headings) else content_end
         cands = section_anchors(doc, start, end)
         for i, it in enumerate(items):
             off = min(cands, key=lambda c: abs(c[1] - it["frac"]))[0]
-            inserts.append((off, i, figure_html(slug, it["fname"], it["alt"])))
+            inserts.append((off, i, figure_inner(slug, it["fname"], it["alt"])))
 
-    # group images landing on the same offset, preserving their original order
+    # group figures landing on the same offset into one marker block (ordered)
     grouped = {}
-    for off, order, blk in inserts:
-        grouped.setdefault(off, []).append((order, blk))
-    merged = [(off, "".join(b for _, b in sorted(items)))
+    for off, order, fig in inserts:
+        grouped.setdefault(off, []).append((order, fig))
+    merged = [(off, wrap_block("\n".join(f for _, f in sorted(items))))
               for off, items in grouped.items()]
 
     # apply high->low so earlier offsets stay valid
     for off, block in sorted(merged, key=lambda x: x[0], reverse=True):
-        doc = doc[:off] + "\n" + block + doc[off:]
+        doc = doc[:off] + block + doc[off:]
     return doc, len(placed)
 
 
@@ -382,6 +390,113 @@ def insert_gallery(doc, slug, placed):
 
 
 # --------------------------------------------------------------------------- #
+# small game-asset icons -> injected into the matching translated table cells
+# --------------------------------------------------------------------------- #
+def cell_icon_urls(inner):
+    """Ordered, de-duplicated small-icon URLs inside one table cell.
+
+    The source emits each lazy icon twice (placeholder + <noscript> copy), so
+    de-dupe by resolved URL while preserving first-seen order.
+    """
+    seen = set()
+    urls = []
+    for m in IMG_TAG_RE.finditer(inner):
+        a = attrs_of(m.group(0))
+        u = real_url(a)
+        if not u or not SMALL_NAME_RE.search(u.split("?")[0]):
+            continue
+        if u in seen:
+            continue
+        seen.add(u)
+        urls.append(u)
+    return urls
+
+
+def table_shape(table_html):
+    """[cells-per-row, ...] — a structural fingerprint for alignment."""
+    return [len(CELL_RE.findall(r)) for r in ROW_RE.findall(table_html)]
+
+
+def original_cell_icons(content):
+    """
+    For the original article, return a list (per table) of
+    {(row, col): [icon_url, ...]} plus each table's shape.
+    """
+    tables = []
+    for t in TABLE_RE.findall(content):
+        cells = {}
+        for r, row in enumerate(ROW_RE.findall(t)):
+            for c, cm in enumerate(CELL_RE.finditer(row)):
+                urls = cell_icon_urls(cm.group(2))
+                if urls:
+                    cells[(r, c)] = urls
+        tables.append((cells, table_shape(t)))
+    return tables
+
+
+def ico_html(slug, fnames):
+    imgs = "".join(
+        f'<img class="ico" src="../assets/images/{slug}/{f}" alt="" '
+        f'loading="lazy">' for f in fnames)
+    return f"{ICO_START}{imgs}{ICO_END}"
+
+
+def inject_icons(doc, slug, content, dest_dir, args):
+    """
+    Inject small icons into translated table cells by table/row/cell position.
+    Returns (new_doc, n_icons, n_tables_skipped).
+
+    Safety: only inject when the guide's table count matches the original; for
+    each table, only when its row/cell shape matches. Mismatches are skipped
+    and counted (never mis-injected into the wrong table).
+    """
+    otables = original_cell_icons(content)
+    if not any(cells for cells, _ in otables):
+        return doc, 0, 0
+
+    region = re.search(r"<main\b.*?</main>", doc, re.S)
+    lo, hi = (region.start(), region.end()) if region else (0, len(doc))
+    ttable_spans = [m for m in TABLE_RE.finditer(doc, lo, hi)]
+
+    # guide-level guard: table counts must match to trust index alignment
+    if len(ttable_spans) != len(otables):
+        n_icons = sum(len(u) for cells, _ in otables for u in cells.values())
+        return doc, 0, len([1 for cells, _ in otables if cells])  # all skipped
+
+    inserts = []          # (offset, html)
+    n_icons = 0
+    skipped = 0
+    for i, (ocells, oshape) in enumerate(otables):
+        if not ocells:
+            continue
+        tspan = ttable_spans[i]
+        ttable = doc[tspan.start():tspan.end()]
+        if table_shape(ttable) != oshape:
+            skipped += 1
+            continue
+        # walk translated rows/cells, collecting absolute inner-start offsets
+        for r, rowm in enumerate(ROW_RE.finditer(doc, tspan.start(), tspan.end())):
+            for c, cm in enumerate(CELL_RE.finditer(doc, rowm.start(), rowm.end())):
+                urls = ocells.get((r, c))
+                if not urls:
+                    continue
+                fnames = []
+                for u in urls:
+                    local = download(u, u, dest_dir, allow=not args.no_download)
+                    if local:
+                        fnames.append(local)
+                if not fnames:
+                    continue
+                inner_start = cm.start(2)   # right after the <td ...> open tag
+                inserts.append((inner_start, ico_html(slug, fnames)))
+                n_icons += len(fnames)
+
+    for off, block in sorted(inserts, key=lambda x: x[0], reverse=True):
+        doc = doc[:off] + block + doc[off:]
+    return doc, n_icons, skipped
+
+
+# --------------------------------------------------------------------------- #
 # main
 # --------------------------------------------------------------------------- #
 def process(path, args):
@@ -390,49 +505,59 @@ def process(path, args):
     with open(path, encoding="utf-8") as f:
         doc = f.read()
 
+    base = {"slug": slug, "status": "no-source", "imgs": 0, "icons": 0,
+            "heads": 0, "tbl_skipped": 0}
+
     m = SOURCE_RE.search(doc)
     if not m:
-        return (slug, "no-source", 0, 0, False)
-    url = m.group(1)
-
-    raw = fetch(url, os.path.join(CACHE_DIR, slug + ".html"),
+        return base
+    raw = fetch(m.group(1), os.path.join(CACHE_DIR, slug + ".html"),
                 allow_network=not args.no_fetch)
     if not raw:
-        return (slug, "fetch-failed", 0, 0, False)
+        return {**base, "status": "fetch-failed"}
 
     content = isolate_content(raw)
-    images = extract_images(content)
-    orig_headings = heading_count(content)
-    if not images:
-        return (slug, "no-images", 0, orig_headings, False)
-
-    # download
     dest_dir = os.path.join(IMAGES_DIR, slug)
-    placed = []
-    for im in images:
-        local = download(im["fullres"], im["url"], dest_dir,
-                         allow=not args.no_download)
-        if local:
-            placed.append({"section": im["section"], "fname": local,
-                           "alt": im["alt"], "frac": im["frac"]})
-    if not placed:
-        return (slug, "download-failed", 0, orig_headings, False)
+    orig_headings = heading_count(content)
 
-    # insert (idempotent: strip any prior markers first)
-    doc2 = strip_markers(doc)
-    result = insert_aligned(doc2, slug, placed)
-    if result is None:
-        doc3, n = insert_gallery(doc2, slug, placed)
-        fallback = True
-    else:
-        doc3, n = result
-        fallback = False
+    # idempotent: drop only the blocks the enabled passes will re-create, so a
+    # single-pass run (e.g. --no-bigimg) leaves the other pass's blocks intact
+    if not args.no_bigimg:
+        doc = MARK_BLOCK_RE.sub("", doc)
+    if not args.no_icons:
+        doc = ICO_BLOCK_RE.sub("", doc)
+
+    # --- big-image pass ---
+    status = "no-images"
+    n_imgs = 0
+    if not args.no_bigimg:
+        placed = []
+        for im in extract_images(content):
+            local = download(im["fullres"], im["url"], dest_dir,
+                             allow=not args.no_download)
+            if local:
+                placed.append({"section": im["section"], "fname": local,
+                               "alt": im["alt"], "frac": im["frac"]})
+        if placed:
+            result = insert_aligned(doc, slug, placed)
+            if result is None:
+                doc, n_imgs = insert_gallery(doc, slug, placed)
+                status = "gallery"
+            else:
+                doc, n_imgs = result
+                status = "aligned"
+
+    # --- small-icon pass ---
+    n_icons = tbl_skipped = 0
+    if not args.no_icons:
+        doc, n_icons, tbl_skipped = inject_icons(doc, slug, content,
+                                                 dest_dir, args)
 
     if not args.dry_run:
         with open(path, "w", encoding="utf-8") as f:
-            f.write(doc3)
-    status = "gallery" if fallback else "aligned"
-    return (slug, status, n, orig_headings, fallback)
+            f.write(doc)
+    return {"slug": slug, "status": status, "imgs": n_imgs, "icons": n_icons,
+            "heads": orig_headings, "tbl_skipped": tbl_skipped}
 
 
 def main():
@@ -444,6 +569,10 @@ def main():
                     help="skip image download (plan/positions only)")
     ap.add_argument("--dry-run", action="store_true",
                     help="don't write the guide files")
+    ap.add_argument("--no-icons", action="store_true",
+                    help="skip the small table-icon pass")
+    ap.add_argument("--no-bigimg", action="store_true",
+                    help="skip the big-image pass (icons only)")
     args = ap.parse_args()
 
     paths = sorted(
@@ -456,27 +585,30 @@ def main():
             log(f"no guide matching {args.only}")
             return 1
 
-    log(f"{'guide':45} {'status':14} {'imgs':>5} {'head':>5}")
-    log("-" * 76)
+    log(f"{'guide':45} {'status':12} {'imgs':>5} {'icons':>6} {'head':>5}")
+    log("-" * 80)
     review = []
-    totals = {"aligned": 0, "gallery": 0, "imgs": 0}
+    totals = {"aligned": 0, "gallery": 0, "imgs": 0, "icons": 0}
     for p in paths:
-        slug, status, n, heads, fb = process(p, args)
-        log(f"{slug:45} {status:14} {n:5d} {heads:5d}")
-        totals["imgs"] += n
-        if status in ("aligned", "gallery"):
-            totals[status] += 1
-        if status not in ("aligned",) or fb:
-            if status != "aligned":
-                review.append((slug, status))
+        r = process(p, args)
+        log(f"{r['slug']:45} {r['status']:12} {r['imgs']:5d} "
+            f"{r['icons']:6d} {r['heads']:5d}")
+        totals["imgs"] += r["imgs"]
+        totals["icons"] += r["icons"]
+        if r["status"] in ("aligned", "gallery"):
+            totals[r["status"]] += 1
+        if r["status"] == "gallery":
+            review.append((r["slug"], "big-image gallery fallback"))
+        if r["tbl_skipped"]:
+            review.append((r["slug"], f"{r['tbl_skipped']} table(s) skipped (shape mismatch)"))
 
-    log("-" * 76)
+    log("-" * 80)
     log(f"aligned guides: {totals['aligned']}   gallery-fallback: {totals['gallery']}   "
-        f"images placed: {totals['imgs']}")
+        f"images placed: {totals['imgs']}   icons placed: {totals['icons']}")
     if review:
         log("\nNEEDS MANUAL REVIEW:")
-        for slug, status in review:
-            log(f"  {slug}: {status}")
+        for slug, note in review:
+            log(f"  {slug}: {note}")
     return 0
 
 

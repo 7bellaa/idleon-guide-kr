@@ -297,6 +297,15 @@ tbody td:first-child { white-space: nowrap; }
   background: var(--bg-panel);
 }
 
+/* 표 셀 안 항목명 옆 작은 게임 아이콘 */
+img.ico {
+  height: 1.4em;
+  width: auto;
+  vertical-align: -0.3em;
+  margin-right: 4px;
+  image-rendering: -webkit-optimize-contrast; /* 픽셀 아트 선명도 */
+}
+
 /* heading 정렬에 실패한 가이드의 하단 갤러리 */
 .guide-gallery {
   margin-top: 40px;
