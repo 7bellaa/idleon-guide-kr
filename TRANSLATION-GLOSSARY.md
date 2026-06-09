@@ -22,7 +22,7 @@
 | 원어 | 표기 |
 |---|---|
 | Accuracy | `Accuracy(명중률)` ※ "정확도" 쓰지 말고 **명중률**로 통일 |
-| Damage | `Damage(피해)` |
+| Damage | `Damage(데미지)` — 명사·동사 모두 **데미지**("데미지를 입히다/준다", "데미지 빌드"). 단 회피 동사 '피하다(피해야)'는 그대로 |
 | Defence | `Defence(방어)` |
 | Multikill | `Multikill(멀티킬)` |
 | Respawn (monster respawn) | `Respawn(리스폰)` |
