@@ -30,6 +30,15 @@ python3 tools/fetch_wiki_icons.py   # 위키에서 아이콘 다운로드 → as
 python3 tools/build_index.py        # 트리 재생성 + 카드 아이콘 재주입 (재실행 안전)
 ```
 
+## URL 미리보기 (Open Graph)
+링크 공유 시 미리보기 카드(카카오톡·디스코드·트위터 등)가 뜨도록 모든 페이지에
+OG/Twitter 메타 태그를 넣었습니다. 공유 이미지는 `assets/og-image.png`(1200×630).
+```
+python3 tools/add_og_tags.py        # 전 페이지에 OG/Twitter 태그 재주입 (재실행 안전)
+```
+배너 이미지를 새로 만들려면 `_ogbanner.html`(로컬, 배포 제외)을 1200×630으로
+스크린샷해 `assets/og-image.png`로 저장합니다.
+
 ## 이미지 동기화
 번역본은 본문 텍스트만 옮겨 이미지가 없었습니다. 각 가이드 헤더의 원문 URL을 따라가
 원문(gameslikefinder.com)의 본문 이미지를 내려받아 `assets/images/<slug>/`에 저장하고,

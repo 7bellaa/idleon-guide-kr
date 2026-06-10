@@ -7,3 +7,6 @@ __pycache__/
 
 # macOS
 .DS_Store
+
+# OG 배너 소스 (로컬 재생성용, 배포 제외)
+_ogbanner.html
