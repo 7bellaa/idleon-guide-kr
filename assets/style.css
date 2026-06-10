@@ -317,3 +317,91 @@ img.ico {
 }
 .guide-gallery h2 { color: var(--ink-faint); }
 .guide-gallery .guide-img { display: inline-block; max-width: 100%; }
+
+/* ---- index: 가이드 카드 아이콘 (공식 위키 idleon.wiki) ------------------ */
+.guide-link { justify-content: flex-start; }
+.guide-link .badge { margin-left: auto; }
+.guide-link img.licon {
+  width: 28px; height: 28px; flex: none;
+  object-fit: contain;
+  image-rendering: -webkit-optimize-contrast;
+}
+
+/* ---- index: 클래스 진화 트리 (티어 컬럼) ------------------------------- */
+.tree-wrap { overflow-x: auto; margin: 6px 0 4px; }
+.class-tree {
+  border-collapse: separate;
+  border-spacing: 8px;
+  width: 100%;
+  min-width: 640px;
+}
+.class-tree thead th {
+  font-size: .76rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .05em;
+  color: var(--ink-faint);
+  padding: 0 0 2px; text-align: center;
+}
+.class-tree thead th .en { color: var(--ink-faint); font-weight: 600; }
+.class-tree th.fam-h { text-align: center; }
+.class-tree th.fam {
+  width: 64px;
+  font-size: .92rem; font-weight: 800;
+  color: var(--primary-ink);
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  vertical-align: middle;
+  line-height: 1.25;
+}
+.class-tree th.fam .en {
+  display: block; font-size: .68rem; font-weight: 600;
+  color: var(--ink-faint); margin-top: 2px;
+}
+.class-tree td { vertical-align: stretch; padding: 0; }
+.class-tree td.empty { border: none; background: none; }
+
+/* 노드 카드 (아이콘 위 / 이름·스킬 아래) */
+.cnode {
+  display: flex; flex-direction: column; align-items: center; gap: 2px;
+  height: 100%;
+  background: var(--bg-panel);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 10px 8px;
+  text-decoration: none;
+  color: var(--ink);
+  box-shadow: var(--shadow);
+  transition: transform .12s ease, border-color .12s ease, box-shadow .12s ease;
+}
+.cnode:hover {
+  transform: translateY(-2px);
+  border-color: var(--primary);
+  box-shadow: 0 6px 18px rgba(91,63,217,.18);
+}
+.class-tree td.base .cnode {
+  background: var(--bg-soft);
+  border-color: var(--primary);
+}
+.cicon {
+  width: 46px; height: 46px; object-fit: contain;
+  image-rendering: -webkit-optimize-contrast;
+}
+.cicon.ph {
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 800; color: var(--ink-faint);
+  background: var(--bg-soft); border-radius: 8px;
+}
+.cname {
+  font-family: 'SF Mono', ui-monospace, Menlo, Consolas, monospace;
+  font-size: .82rem; font-weight: 600; text-align: center; line-height: 1.15;
+}
+.cskill {
+  font-size: .68rem; color: var(--ink-faint);
+}
+.cskill::before { content: "⛏ "; opacity: .6; }
+
+@media (max-width: 640px) {
+  .class-tree { border-spacing: 6px; }
+  .cicon { width: 40px; height: 40px; }
+  .cname { font-size: .76rem; }
+}
