@@ -297,12 +297,15 @@ tbody td:first-child { white-space: nowrap; }
   background: var(--bg-panel);
 }
 
-/* 표 셀 안 항목명 옆 작은 게임 아이콘 */
+/* 표 셀 안 항목명 옆 게임 아이콘 — 인게임(원본) 크기로 표시
+   (탤런트 56px, 아이템 50px, 버블 36px 등 각 아이콘의 네이티브 픽셀 크기) */
 img.ico {
-  height: 1.4em;
   width: auto;
-  vertical-align: -0.3em;
-  margin-right: 4px;
+  height: auto;
+  max-width: 56px;
+  max-height: 56px;
+  vertical-align: middle;
+  margin: 2px 6px;
   image-rendering: -webkit-optimize-contrast; /* 픽셀 아트 선명도 */
 }
 
